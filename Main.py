@@ -1,14 +1,7 @@
-import tracery
-from tracery.modifiers import base_english
+from HorrorGrammar import get_horror_grammar
 
 
 if __name__ == "__main__":
-    rules = {
-        'origin': '#hello.capitalize#, #location#!',
-        'hello': ['hello', 'greetings', 'howdy', 'hey'],
-        'location': ['world', 'solar system', 'galaxy', 'universe']
-    }
-
-    grammar = tracery.Grammar(rules)
-    grammar.add_modifiers(base_english)
-    print(grammar.flatten("#origin#"))  # prints, e.g., "Hello, world!"
+    horror_grammar = get_horror_grammar()
+    generated_story = horror_grammar.flatten("#origin#")
+    print(generated_story)
