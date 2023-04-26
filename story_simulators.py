@@ -1,7 +1,8 @@
 import random
+from domain.character_involvement import CharacterInvolvement
 
 
-def simulate_horror_origin(location, characters):
+def simulate_horror_origin(story_world):
     events = []
 
     possible_events = [
@@ -21,19 +22,20 @@ def simulate_horror_origin(location, characters):
         event = random.choice(secondary_events)
         events.append(event)
 
+    characters = story_world.characters
     num_characters_involved = random.randint(1, len(characters))
     involved_characters = random.sample(characters, num_characters_involved)
 
     involvement_reasons = [
-        'witnessed the event',
-        'participated in the event',
-        'tried to stop the event',
-        'were indirectly affected by the event',
-        'know a secret about the event',
+        CharacterInvolvement.WITNESS,
+        CharacterInvolvement.INVOLVED_IN_ORIGIN,
+        CharacterInvolvement.TRIED_TO_STOP,
+        CharacterInvolvement.INDIRECTLY_AFFECTED,
+        CharacterInvolvement.KNOW_A_SECRET,
     ]
-    character_involvement = {}
+
     for character in involved_characters:
         reason = random.choice(involvement_reasons)
-        character_involvement[character] = reason
+        character.involvement = reason
 
-    return events, character_involvement
+    story_world.events = events

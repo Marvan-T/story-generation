@@ -6,5 +6,5 @@ names = ["Mike The Magician", "Alaxesis", "Prancer", "The Adrenaline Junkie", "B
          "Elyse of Elysium"]
 
 
-def random_name():
+def get_random_monster_name():
     return random.choice(names)

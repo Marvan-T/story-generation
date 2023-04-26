@@ -13,7 +13,7 @@ def get_horror_grammar():
         ],
         # ... (rest of  grammar rules)
 
-        "monsterHint": [generate_stage1_variations()],
+        "monsterHint": "test",
     }
 
 
