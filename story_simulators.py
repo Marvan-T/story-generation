@@ -35,7 +35,8 @@ def simulate_horror_origin(story_world):
     ]
 
     for character in involved_characters:
-        reason = random.choice(involvement_reasons)
-        character.involvement = reason
+        if character.involvement is None:
+            reason = random.choice(involvement_reasons)
+            character.involvement = reason
 
     story_world.events = events

@@ -3,7 +3,7 @@ from story_world import StoryWorld
 
 if __name__ == "__main__":
     story_world = StoryWorld()
-    horror_grammar = get_horror_grammar()
+    horror_grammar = get_horror_grammar(story_world)
     generated_story = horror_grammar.flatten("#origin#")
     print(generated_story)
 
