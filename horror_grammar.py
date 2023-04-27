@@ -1,13 +1,14 @@
 import tracery
 from tracery.modifiers import base_english
-from story_generators import generate_stage1_variations
+from story_generators import generate_stage1_variations, generate_character_intro
 
 
 def get_horror_grammar(story_world):
     monster = story_world.monster_name
-    location = story_world.location
+    horror_location = story_world.horror_location
 
-    stage1_variations = generate_stage1_variations(monster, location)
+    stage1_variations = generate_stage1_variations(monster, horror_location)
+    character_intros = generate_character_intro(story_world)
 
     horror_rules = {
         "origin": ["#act1#\n\n#act2#\n\n#act3#"],
@@ -16,10 +17,12 @@ def get_horror_grammar(story_world):
             "#stage1#\n#stage2#\n#stage3#\n#stage4#"
         ],
         "stage1": [
-            "The hidden monster: #monsterHint#."
+            "The hidden monster: #monsterHint#.",
         ],
         "stage2": [
-            "Introducing the characters: #characterIntro#."
+            "Introducing the protagonist: #characterIntro#. "
+            "#startingJourney#. "
+            "#meetingOtherCharacters#.",
         ],
         "stage3": [
             "The journey begins: #isolation#."
@@ -61,7 +64,9 @@ def get_horror_grammar(story_world):
         ],
 
         "monsterHint": stage1_variations,
-        "characterIntro": ["..."],
+        "characterIntro": character_intros,
+        "startingJourney": ["..."],
+        "meetingOtherCharacters": ["..."],
         "isolation": ["..."],
         "firstEncounter": ["..."],
         "dangerObvious": ["..."],

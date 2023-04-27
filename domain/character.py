@@ -6,6 +6,7 @@ class Character:
         self.name = name or names.get_full_name()
         self.role = role
         self.involvement = involvement
+        self.modifier = None
 
     def __str__(self):
         return f"{self.name} ({self.role})"
