@@ -9,7 +9,6 @@ from util.town_names import get_town
 
 class StoryWorld:
     def __init__(self):
-        self.character_involvement = None
         self.events = None
         self.characters = self.generate_characters(6)
         self.horror_location = get_horror_location()
@@ -30,3 +29,11 @@ class StoryWorld:
         for character in self.characters:
             if character.involvement == CharacterInvolvement.PROTAGONIST:
                 return character
+
+    # Returns a list of all characters except the protagonist and victim
+    def get_other_characters(self):
+        other_characters = []
+        for character in self.characters:
+            if character.involvement != CharacterInvolvement.PROTAGONIST or character.involvement != CharacterInvolvement.VICTIM:
+                other_characters.append(character)
+        return other_characters
