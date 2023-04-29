@@ -199,6 +199,7 @@ def generate_isolation(protagonist, story_world):
         ]
         return random.choice(subtle_approaches)
 
+
 def generate_first_encounter(protagonist, story_world):
     encounter_scenarios = [
         f"As {protagonist.first_name} cautiously moves forward, they catch a glimpse of the {story_world.monster_name}, and their mind struggles to comprehend the horrifying sight.",
