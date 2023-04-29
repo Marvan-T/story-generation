@@ -1,6 +1,6 @@
 import tracery
 from tracery.modifiers import base_english
-from story_generators import generate_stage1_variations, generate_character_intro, generate_starting_journey, \
+from story_generators_act1 import generate_stage1_variations, generate_character_intro, generate_starting_journey, \
     generate_meeting_other_characters, generate_isolation, generate_first_encounter
 
 
