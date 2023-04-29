@@ -16,8 +16,8 @@ def get_horror_grammar(story_world):
                                                                                  story_world.get_other_characters(),
                                                                                  story_world)
 
-    isolation_sentence = generate_isolation(protagonist, story_world)
-    first_encounter = generate_first_encounter(protagonist, story_world, isolation_sentence)
+    isolation_sentences = generate_isolation(protagonist, story_world)
+    first_encounter_scenarios = generate_first_encounter(protagonist, story_world)
 
     horror_rules = {
         "origin": ["#act1#\n\n#act2#\n\n#act3#"],
@@ -76,8 +76,8 @@ def get_horror_grammar(story_world):
         "characterIntro": character_intros,
         "startingJourney": starting_journeys,
         "meetingOtherCharacters": meeting_conversations,
-        "isolation": isolation_sentence,
-        "firstEncounter": first_encounter,
+        "isolation": isolation_sentences,
+        "firstEncounter": first_encounter_scenarios,
         "dangerObvious": ["..."],
         "pursuit": ["..."],
         "firstConfrontation": ["..."],

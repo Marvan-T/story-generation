@@ -194,25 +194,18 @@ def generate_isolation(protagonist, story_world):
     else:
         subtle_approaches = [
             f"As evening falls, {protagonist.first_name} decides to take a stroll around the town to clear their thoughts, but soon finds themselves in the territory of the {story_world.monster_name}.",
-            f"{protagonist.first_name} heads to the local store to pick up some groceries, unaware of the horror that awaits them in the form of the {story_world.monster_name}.",
             f"Feeling a bit lonely, {protagonist.first_name} takes a walk through the woods to enjoy some quiet time, only to stumble upon the {story_world.monster_name}'s hunting grounds.",
             f"Deciding to explore the town a little more, {protagonist.first_name} ends up in a secluded and eerie location, where the {story_world.monster_name} lurks in the shadows.",
         ]
         return random.choice(subtle_approaches)
 
+def generate_first_encounter(protagonist, story_world):
+    encounter_scenarios = [
+        f"As {protagonist.first_name} cautiously moves forward, they catch a glimpse of the {story_world.monster_name}, and their mind struggles to comprehend the horrifying sight.",
+        f"While investigating the area, {protagonist.first_name} suddenly finds themselves face to face with the {story_world.monster_name}, causing their entire perception of reality to be shaken.",
+        f"{protagonist.first_name} hears an eerie sound and turns around, only to be confronted by the monstrous figure of the {story_world.monster_name}, making them question their own sanity.",
+        f"The terrifying form of the {story_world.monster_name} emerges from the shadows, and as {protagonist.first_name} locks eyes with the creature, they grapple with the horrifying reality before them.",
+        f"{protagonist.first_name} stumbles upon the hideous {story_world.monster_name}, and the sight of the creature defies all logic and reason, leaving them feeling utterly disoriented.",
+    ]
 
-def generate_first_encounter(protagonist, story_world, isolation_scenario):
-    if protagonist.knowledge:
-        deliberate_encounters = [
-            f"{isolation_scenario} As {protagonist.first_name} cautiously moves forward, they catch a glimpse of the {story_world.monster_name}, and their mind struggles to comprehend the horrifying sight.",
-            f"{isolation_scenario} While investigating the area, {protagonist.first_name} suddenly finds themselves face to face with the {story_world.monster_name}, causing their entire perception of reality to be shaken.",
-            f"{isolation_scenario} {protagonist.first_name} hears an eerie sound and turns around, only to be confronted by the monstrous figure of the {story_world.monster_name}, making them question their own sanity.",
-        ]
-        return random.choice(deliberate_encounters)
-    else:
-        accidental_encounters = [
-            f"{isolation_scenario} The terrifying form of the {story_world.monster_name} emerges from the shadows, and as {protagonist.first_name} locks eyes with the creature, they grapple with the horrifying reality before them.",
-            f"{isolation_scenario} {protagonist.first_name} stumbles upon the hideous {story_world.monster_name}, and the sight of the creature defies all logic and reason, leaving them feeling utterly disoriented.",
-        ]
-        return random.choice(accidental_encounters)
-
+    return random.choice(encounter_scenarios)
