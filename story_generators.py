@@ -138,7 +138,7 @@ def generate_starting_journey(location, modifier, first_name):
 
 
 def generate_meeting_other_characters(protagonist, other_characters, story_world):
-    character1, character2 = random.sample(other_characters, 2) #Todo: make sure this doesn't include the protagonist
+    character1, character2 = random.sample(other_characters, 2)  # Todo: make sure this doesn't include the protagonist
 
     normal_conversations = [
         f"{character1.first_name} and {character2.first_name} talk about the upcoming town festival.",
@@ -182,57 +182,37 @@ def generate_meeting_other_characters(protagonist, other_characters, story_world
     return conversation, is_horror_related
 
 
-# def generate_isolation(protagonist, story_world):
-#     protagonist_name = protagonist.first_name
-#     knowledge = protagonist.knowledge
-#     if knowledge:
-#         knowledge_item = random.choice(knowledge)
-#         people_involved, conversation = knowledge_item
-#         modifier = f"Remembering what {people_involved} told {protagonist_name} about {conversation},"
-#     else:
-#         modifier = ""
-#
-#     isolation_sentences = [
-#         f"{modifier} {protagonist_name} feels a growing sense of unease as the day turns to night.",
-#         f"{modifier} {protagonist_name} can't shake the feeling that something isn't right.",
-#         f"{modifier} The unsettling atmosphere envelops {protagonist_name} as darkness falls.",
-#         f"{modifier} As night descends upon the town, {protagonist_name} becomes increasingly apprehensive.",
-#     ]
-#
-#     return random.choice(isolation_sentences)
-
-
-def generate_isolation(protagonist, knowledge):
-    protagonist_name = protagonist.first_name
-    if knowledge:
-        character1_name, character2_name, conversation = knowledge[0]
-
-        modifiers = [
-            f"Remembering what {character1_name} and {character2_name} told about {conversation},",
-            f"Haunted by {character1_name} and {character2_name}'s story about {conversation},",
-            f"Unable to shake off {character1_name} and {character2_name}'s chilling account of {conversation},",
+def generate_isolation(protagonist, story_world):
+    if protagonist.knowledge:
+        knowledge_item = protagonist.knowledge[-1][2]
+        explore_reasons = [
+            f"Driven by curiosity, {protagonist.first_name} decides to explore the {knowledge_item} further, unknowingly placing themselves in the path of the {story_world.monster_name}.",
+            f"Unable to shake the feeling that something isn't right, {protagonist.first_name} ventures to {knowledge_item}, inadvertently stepping into the lair of the {story_world.monster_name}.",
+            f"Feeling a strong need to know more about {knowledge_item}, {protagonist.first_name} embarks on a journey to explore the area, only to find themselves face to face with the {story_world.monster_name}.",
         ]
-        modifier = random.choice(modifiers)
-
-        related_sentences = [
-            f"{modifier} driven by curiosity and unease, {protagonist_name} decides to explore the area mentioned in the conversation.",
-            f"{modifier} unable to ignore the unsettling feeling, {protagonist_name} starts to investigate the source of the chilling tale.",
-            f"{modifier} the creeping sense of dread compels {protagonist_name} to seek out the truth behind {character1_name} and {character2_name}'s story.",
-            f"{modifier} motivated by a growing concern, {protagonist_name} sets out to uncover the hidden secrets of the town.",
-        ]
-
-        sentence = random.choice(related_sentences)
+        return random.choice(explore_reasons)
     else:
-        isolation_sentences = [
-            f"As night falls, {protagonist_name} begins to feel a growing sense of unease.",
-            f"The shadows seem to grow darker around {protagonist_name}, causing them to feel increasingly uneasy.",
-            f"The silence of the night starts to feel oppressive, and {protagonist_name} can't shake the feeling that something isn't right.",
-            f"As darkness envelops the town, {protagonist_name} becomes more and more apprehensive.",
+        subtle_approaches = [
+            f"As evening falls, {protagonist.first_name} decides to take a stroll around the town to clear their thoughts, but soon finds themselves in the territory of the {story_world.monster_name}.",
+            f"{protagonist.first_name} heads to the local store to pick up some groceries, unaware of the horror that awaits them in the form of the {story_world.monster_name}.",
+            f"Feeling a bit lonely, {protagonist.first_name} takes a walk through the woods to enjoy some quiet time, only to stumble upon the {story_world.monster_name}'s hunting grounds.",
+            f"Deciding to explore the town a little more, {protagonist.first_name} ends up in a secluded and eerie location, where the {story_world.monster_name} lurks in the shadows.",
         ]
-
-        sentence = random.choice(isolation_sentences)
-
-    return sentence
+        return random.choice(subtle_approaches)
 
 
+def generate_first_encounter(protagonist, story_world, isolation_scenario):
+    if protagonist.knowledge:
+        deliberate_encounters = [
+            f"{isolation_scenario} As {protagonist.first_name} cautiously moves forward, they catch a glimpse of the {story_world.monster_name}, and their mind struggles to comprehend the horrifying sight.",
+            f"{isolation_scenario} While investigating the area, {protagonist.first_name} suddenly finds themselves face to face with the {story_world.monster_name}, causing their entire perception of reality to be shaken.",
+            f"{isolation_scenario} {protagonist.first_name} hears an eerie sound and turns around, only to be confronted by the monstrous figure of the {story_world.monster_name}, making them question their own sanity.",
+        ]
+        return random.choice(deliberate_encounters)
+    else:
+        accidental_encounters = [
+            f"{isolation_scenario} The terrifying form of the {story_world.monster_name} emerges from the shadows, and as {protagonist.first_name} locks eyes with the creature, they grapple with the horrifying reality before them.",
+            f"{isolation_scenario} {protagonist.first_name} stumbles upon the hideous {story_world.monster_name}, and the sight of the creature defies all logic and reason, leaving them feeling utterly disoriented.",
+        ]
+        return random.choice(accidental_encounters)
 

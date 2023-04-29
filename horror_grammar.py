@@ -1,7 +1,7 @@
 import tracery
 from tracery.modifiers import base_english
 from story_generators import generate_stage1_variations, generate_character_intro, generate_starting_journey, \
-    generate_meeting_other_characters, generate_isolation
+    generate_meeting_other_characters, generate_isolation, generate_first_encounter
 
 
 def get_horror_grammar(story_world):
@@ -16,7 +16,8 @@ def get_horror_grammar(story_world):
                                                                                  story_world.get_other_characters(),
                                                                                  story_world)
 
-    isolation_sentence = generate_isolation(protagonist, protagonist.knowledge)
+    isolation_sentence = generate_isolation(protagonist, story_world)
+    first_encounter = generate_first_encounter(protagonist, story_world, isolation_sentence)
 
     horror_rules = {
         "origin": ["#act1#\n\n#act2#\n\n#act3#"],
@@ -76,7 +77,7 @@ def get_horror_grammar(story_world):
         "startingJourney": starting_journeys,
         "meetingOtherCharacters": meeting_conversations,
         "isolation": isolation_sentence,
-        "firstEncounter": ["..."],
+        "firstEncounter": first_encounter,
         "dangerObvious": ["..."],
         "pursuit": ["..."],
         "firstConfrontation": ["..."],
