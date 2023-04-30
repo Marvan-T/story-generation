@@ -38,3 +38,21 @@ def generate_pursuit(protagonist, story_world):
     ]
 
     return random.choice(pursuit_scenarios)
+
+def generate_first_confrontation(protagonist, story_world):
+    failure_reasons = {
+        "lack of information": "fumbling in the dark",
+        "wrong assumptions": "misguided by their own misconceptions",
+        "inner conflicts": "held back by their own doubts"
+    }
+
+    chosen_reason = random.choice(list(failure_reasons.values()))
+
+    confrontation_scenarios = [
+        f"Gathering their courage, {protagonist.first_name} attempts to fight back against the {story_world.monster_name}, but their efforts prove futile as they find themselves {chosen_reason}.",
+        f"With a surge of adrenaline, {protagonist.first_name} tries to stand up to the {story_world.monster_name}, only to realize that {chosen_reason} is preventing them from making any progress.",
+        f"Desperate to survive, {protagonist.first_name} faces the {story_world.monster_name} head-on but soon discovers that {chosen_reason} is a significant obstacle in their struggle.",
+        f"{protagonist.first_name} musters all their strength to confront the {story_world.monster_name}, but their attempts are in vain as they grapple with the challenges posed by {chosen_reason}.",
+    ]
+
+    return random.choice(confrontation_scenarios)
