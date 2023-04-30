@@ -1,8 +1,8 @@
 import tracery
 from tracery.modifiers import base_english
-from story_generators_act1 import generate_stage1_variations, generate_character_intro, generate_starting_journey, \
+from story_generators.story_generators_act1 import generate_stage1_variations, generate_character_intro, generate_starting_journey, \
     generate_meeting_other_characters, generate_isolation, generate_first_encounter
-from story_generators_act2 import generate_danger_obvious, generate_pursuit
+from story_generators.story_generators_act2 import generate_danger_obvious, generate_pursuit
 
 
 def get_horror_grammar(story_world):
