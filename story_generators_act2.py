@@ -10,3 +10,31 @@ def generate_danger_obvious(protagonist, story_world):
     ]
 
     return random.choice(danger_scenarios)
+
+def generate_pursuit(protagonist, story_world):
+    hint_chance = 0.5  # Probability of providing a hint
+
+    hints = {
+        "ignored_burial": "an unmarked grave",
+        "ancient_curse": "an ancient artifact",
+        "unethical_experiment": "a hidden laboratory",
+        "forbidden_ritual": "a mysterious altar",
+        "supernatural_portal": "a strange portal"
+    }
+
+    hint_present = random.random() < hint_chance
+    hint = ""
+
+    if hint_present:
+        hint_key = story_world.events[0][0]
+        hint = hints[hint_key]
+        protagonist.knowledge.append(("hint", "monster origin", hint))
+
+    pursuit_scenarios = [
+        f"While being chased by the {story_world.monster_name}, {protagonist.first_name} stumbles upon {hint} and becomes more determined to confront their inner demons and escape the nightmare." if hint_present else f"While being chased by the {story_world.monster_name}, {protagonist.first_name} becomes more determined to confront their inner demons and escape the nightmare.",
+        f"The pursuit of the {story_world.monster_name} forces {protagonist.first_name} to face their deepest fears, pushing them to their limits. During the chase, they catch a glimpse of {hint}." if hint_present else f"The pursuit of the {story_world.monster_name} forces {protagonist.first_name} to face their deepest fears, pushing them to their limits.",
+        f"Cornered by the {story_world.monster_name}, {protagonist.first_name} starts to hear faint whispers of {hint}, urging them to confront their past and find the strength to fight." if hint_present else f"Cornered by the {story_world.monster_name}, {protagonist.first_name} is urged to confront their past and find the strength to fight.",
+        f"In the midst of the harrowing pursuit, {protagonist.first_name} discovers {hint}, which forces them to confront the source of the {story_world.monster_name}'s existence and their own fears." if hint_present else f"In the midst of the harrowing pursuit, {protagonist.first_name} is forced to confront the source of the {story_world.monster_name}'s existence and their own fears.",
+    ]
+
+    return random.choice(pursuit_scenarios)
