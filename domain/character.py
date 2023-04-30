@@ -9,6 +9,7 @@ class Character:
         self.involvement = involvement
         self.modifier = None
         self.knowledge = []
+        self.monster_escape = None
 
     def __str__(self):
         return f"{self.name} ({self.role})"

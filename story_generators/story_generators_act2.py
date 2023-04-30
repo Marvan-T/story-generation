@@ -56,3 +56,21 @@ def generate_first_confrontation(protagonist, story_world):
     ]
 
     return random.choice(confrontation_scenarios)
+
+
+def generate_desperation(protagonist, story_world):
+    desperation_scenarios = [
+        f"{protagonist.first_name} manages to momentarily escape the {story_world.monster_name} by hiding in a small crevice, but they know the reprieve won't last long.",
+        f"Despite their injuries, {protagonist.first_name} summons the strength to flee from the {story_world.monster_name}, creating some distance between them and the creature.",
+        f"{protagonist.first_name} sacrifices something dear to them to slow down the {story_world.monster_name}, allowing them to put some distance between themselves and the relentless beast.",
+        f"Feeling utterly hopeless and abandoned, {protagonist.first_name} struggles to put distance between themselves and the {story_world.monster_name}, only to be cornered once again.",
+    ]
+
+    chosen_scenario = random.choice(desperation_scenarios)
+
+    if "momentarily escape" in chosen_scenario or "creating some distance" in chosen_scenario or "put some distance" in chosen_scenario:
+        protagonist.monster_escape = True
+    else:
+        protagonist.monster_escape = False
+
+    return chosen_scenario
