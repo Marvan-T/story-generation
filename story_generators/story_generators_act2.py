@@ -59,18 +59,50 @@ def generate_first_confrontation(protagonist, story_world):
 
 
 def generate_desperation(protagonist, story_world):
-    desperation_scenarios = [
-        f"{protagonist.first_name} manages to momentarily escape the {story_world.monster_name} by hiding in a small crevice, but they know the reprieve won't last long.",
-        f"Despite their injuries, {protagonist.first_name} summons the strength to flee from the {story_world.monster_name}, creating some distance between them and the creature.",
-        f"{protagonist.first_name} sacrifices something dear to them to slow down the {story_world.monster_name}, allowing them to put some distance between themselves and the relentless beast.",
-        f"Feeling utterly hopeless and abandoned, {protagonist.first_name} struggles to put distance between themselves and the {story_world.monster_name}, only to be cornered once again.",
+    injury_faint_chance = 0.3
+    monster_distracted_chance = 0.2
+
+    intense_sentences_sets = [
+        [
+            f"{protagonist.first_name} struggles to breathe as the cold, damp air fills their lungs, each gasp accompanied by a sharp pain in their chest.",
+            f"The darkness engulfs {protagonist.first_name}, making it impossible to see even a few inches in front of them, heightening their fear and desperation.",
+            f"Every sound sends a shiver down {protagonist.first_name}'s spine, as their senses become overwhelmed by the oppressive atmosphere and the relentless pursuit.",
+        ],
+        [
+            f"{protagonist.first_name} feels their heart pounding in their chest, the rapid beats echoing in their ears as they try to escape the {story_world.monster_name}.",
+            f"Sweat beads on {protagonist.first_name}'s forehead, the salty droplets stinging their eyes and blurring their vision in the most crucial moments.",
+            f"An overwhelming sense of dread washes over {protagonist.first_name} as they realize that their situation has become direr with each passing moment.",
+        ],
+        [
+            f"Despair settles heavily upon {protagonist.first_name}'s shoulders as they stumble through the unfamiliar terrain, feeling more lost and alone than ever before.",
+            f"The eerie silence is deafening, punctuated only by {protagonist.first_name}'s ragged breaths and the distant, haunting sounds of the {story_world.monster_name}.",
+            f"{protagonist.first_name}'s legs feel like lead, their muscles screaming in protest as they force themselves to continue running from the relentless {story_world.monster_name}.",
+        ],
     ]
 
-    chosen_scenario = random.choice(desperation_scenarios)
+    intense_sentences = random.choice(intense_sentences_sets)
+    intense_description = ' '.join(intense_sentences)
 
-    if "momentarily escape" in chosen_scenario or "creating some distance" in chosen_scenario or "put some distance" in chosen_scenario:
-        protagonist.monster_escape = True
+    result = random.random()
+
+    # Let the protagonist get injured or faint with a probability. There is a chance that the monster will be distracted by something else as well.
+    if result < injury_faint_chance:
+        injury_or_faint = random.choice(["injury", "faint"])
+
+        if injury_or_faint == "injury":
+            protagonist.status = "injured"
+            injury_description = f"{protagonist.first_name} suffers a painful injury while trying to escape the {story_world.monster_name}, which hinders their movement and forces them to leave something valuable behind."
+            return intense_description + ' ' + injury_description
+
+        elif injury_or_faint == "faint":
+            protagonist.status = "fainted"
+            faint_description = f"Exhausted and overwhelmed, {protagonist.first_name} loses consciousness. They wake up days later in a more dangerous and isolated place, disoriented and struggling to piece together what happened."
+            return intense_description + ' ' + faint_description
+
+    elif result < injury_faint_chance + monster_distracted_chance:
+        distraction_description = f"Unexpectedly, the {story_world.monster_name} becomes distracted by something and leaves {protagonist.first_name}'s sight, providing a brief moment of relief."
+        return intense_description + ' ' + distraction_description
+
     else:
-        protagonist.monster_escape = False
-
-    return chosen_scenario
+        normal_description = f"{protagonist.first_name}'s heart pounds as they continue to evade the {story_world.monster_name}, feeling more isolated and hopeless than ever before."
+        return intense_description + ' ' + normal_description

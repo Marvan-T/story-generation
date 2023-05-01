@@ -10,6 +10,7 @@ class Character:
         self.modifier = None
         self.knowledge = []
         self.monster_escape = None
+        self.status = "normal"
 
     def __str__(self):
         return f"{self.name} ({self.role})"
