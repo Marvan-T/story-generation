@@ -1,6 +1,7 @@
 import random
 
 from domain.character import Character
+from domain.character_involvement import CharacterInvolvement
 
 
 def generate_breakthrough(protagonist, story_world):
@@ -18,22 +19,22 @@ def generate_breakthrough(protagonist, story_world):
         if met_characters:
             met_character_tuple = random.choice(met_characters)
             met_character = met_character_tuple[0]
-            character_role = met_character.role
+            character_role = met_character.involvement
             motive = f"Determined to confront their fears and find answers, {protagonist.first_name} decides to reconnect with {met_character.first_name}, hoping to gather more information and discuss their experiences."
 
-            if character_role == "witness":
+            if character_role == CharacterInvolvement.VICTIM:
                 interaction = f"{met_character.first_name} offers a truthful account of their observations regarding the {story_world.monster_name}, revealing that the creature seems to avoid water."
                 protagonist.knowledge.append(("witness_info", "monster_avoids_water"))
-            elif character_role == "involved_in_origin":
+            elif character_role == CharacterInvolvement.INVOLVED_IN_ORIGIN:
                 interaction = f"{met_character.first_name} hesitantly admits to being involved in the {story_world.monster_name}'s creation and discloses that the creature is sensitive to a specific sound frequency."
                 protagonist.knowledge.append(("origin_info", "monster_sensitive_frequency"))
-            elif character_role == "tried_to_stop":
+            elif character_role == CharacterInvolvement.TRIED_TO_STOP:
                 interaction = f"{met_character.first_name} shares honest details about their efforts to intervene and stop the {story_world.monster_name}, revealing that they discovered a specific type of plant that seemed to weaken the monster."
                 protagonist.knowledge.append(("stop_attempt_info", "monster_weakened_by_plant"))
-            elif character_role == "indirectly_affected":
+            elif character_role == CharacterInvolvement.INDIRECTLY_AFFECTED:
                 interaction = f"{met_character.first_name} expresses empathy for {protagonist.first_name}'s ordeal and shares their own experiences related to the {story_world.monster_name}, mentioning that the creature seems to be more active during the night."
                 protagonist.knowledge.append(("indirectly_affected_info", "monster_more_active_at_night"))
-            else:  # KNOW_A_SECRET #Todo why is this getting called all the time?
+            else:  # KNOW_A_SECRET
                 interaction = f"{met_character.first_name} remains secretive but subtly alludes to the {story_world.monster_name}'s terrifying origins, hinting at the existence of an ancient artifact that could control or banish the monster."
                 protagonist.knowledge.append(("secret_info", "ancient_artifact"))
 
