@@ -87,16 +87,38 @@ def generate_breakthrough(protagonist, story_world):
 
     monster_origin = story_world.events[0][0]
     origin_description = {
-        'ignored_burial': "an improperly laid to rest spirit, which could be appeased by performing a proper burial ritual",
-        'ancient_curse': "a powerful ancient curse, which can be broken by finding and destroying the cursed object",
-        'unethical_experiment': "an unethical experiment gone awry, which may be reversed by finding the scientist's notes and developing an antidote",
-        'supernatural_portal': "a supernatural portal accidentally opened, which can be closed by performing a sealing ritual",
-        'forbidden_ritual': "a forbidden ritual that unleashed dark forces, which can be stopped by banishing the dark forces using a counter-ritual"
+        'ignored_burial': [
+            "an improperly laid to rest spirit, which could be appeased by performing a proper burial ritual",
+            "a restless ghost due to a forgotten grave, which can be pacified by cleaning and marking the grave",
+            "an angry spirit of an unburied body, which can be calmed by finding and burying the remains"
+        ],
+        'ancient_curse': [
+            "a powerful ancient curse, which can be broken by finding and destroying the cursed object",
+            "a deadly curse unleashed by a forbidden act, which can be lifted by making amends for the act",
+            "a malediction linked to an ancient artifact, which can be nullified by returning the artifact to its original location"
+        ],
+        'unethical_experiment': [
+            "an unethical experiment gone awry, which may be reversed by finding the scientist's notes and developing an antidote",
+            "a failed experiment resulting in monstrous creatures, which can be neutralized by destroying the source of their mutation",
+            "a dangerous experiment that released a pathogen, which can be contained by discovering a cure and administering it to the affected population"
+        ],
+        'supernatural_portal': [
+            "a supernatural portal accidentally opened, which can be closed by performing a sealing ritual",
+            "a dimensional rift connecting to another realm, which can be sealed by repairing the damaged energy ley lines",
+            "an otherworldly gateway inadvertently activated, which can be shut down by finding and deactivating the artifact that opened it"
+        ],
+        'forbidden_ritual': [
+            "a forbidden ritual that unleashed dark forces, which can be stopped by banishing the dark forces using a counter-ritual",
+            "a dark summoning that brought forth a malevolent being, which can be banished by completing a sacred ritual",
+            "an occult ceremony that invoked sinister energies, which can be dispelled by cleansing the area and performing a protective rite"
+        ]
     }
-    protagonist.knowledge.append(('monster_origin', monster_origin, origin_description[monster_origin]))
+
+    origin_reason = random.choice(origin_description[monster_origin])
+    protagonist.knowledge.append(('monster_origin', monster_origin, random.choice(origin_description[monster_origin])))
 
     if event_occurred:
-        origin_discovery = f"{protagonist.first_name} learns that the {story_world.monster_name} is the result of {origin_description[monster_origin]}."
+        origin_discovery = f"{protagonist.first_name} learns that the {story_world.monster_name} is the result of {origin_reason}."
         story_progress.append(origin_discovery)
 
     breakthrough_story = ' '.join(story_progress)
