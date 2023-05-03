@@ -169,7 +169,7 @@ def generate_meeting_other_characters(protagonist, other_characters, story_world
             f"the haunted woods near {story_world.town_name}")
     ]
 
-    probability_of_horror_conversation = 0.9
+    probability_of_horror_conversation = 0.5
 
     if random.random() < probability_of_horror_conversation:
         conversation, knowledge_item = random.choice(horror_related_conversations)

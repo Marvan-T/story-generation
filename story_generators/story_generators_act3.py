@@ -41,8 +41,8 @@ def generate_breakthrough(protagonist, story_world):
             story_progress.append(motive)
             story_progress.append(interaction)
 
-            research_story = []
             for info in protagonist.knowledge[-len(met_characters):]:
+                research_story = []
                 if info[1] == "monster_avoids_water":
                     research = f"{protagonist.first_name} investigates further and learns that the {story_world.monster_name} can be weakened or defeated using water, possibly due to its aversion to the element. To defeat the monster, {protagonist.first_name} must find a way to use water against it in their next encounter."
                     protagonist.knowledge.append(("research_info", "use_water_against_monster"))
@@ -60,28 +60,30 @@ def generate_breakthrough(protagonist, story_world):
                     protagonist.knowledge.append(("research_info", "find_and_activate_artifact"))
 
                 research_story.append(research)
-
-        story_progress.extend(research_story)
-        event_occurred = True
+                story_progress.extend(research_story)
+                event_occurred = True
 
     # mutually exclusive - 2 (only if #mutually exclusive - 1 did not happen)
-    if not event_occurred and protagonist.status == "fainted":
+    if not event_occurred and any('hint' in attribute for attribute in protagonist.knowledge):
         clue = [item for item in protagonist.knowledge if item[0] == "hint"]
         if clue:
             hint = clue[0][-1]
             investigation = f"Recalling the hint they found - {hint}, {protagonist.first_name} decides to investigate further. They search local newspapers and talk to residents, hoping to uncover the truth about the {story_world.monster_name}."
             story_progress.append(investigation)
+        event_occurred = True
 
     # mutually exclusive - 3 (only if #mutually exclusive - 1 and #mutually exclusive - 2 did not happen)
     if not event_occurred and random.random() < 0.5:
         ally = random.choice(["a skilled investigator", "a knowledgeable historian", "an experienced monster hunter"])
         ally_interaction = f"While feeling overwhelmed and desperate, {protagonist.first_name} encounters {ally}, who offers to help them in their quest for the truth. With their unique skills and resources, they provide fresh insights into the {story_world.monster_name}'s origins."
         story_progress.append(ally_interaction)
+        event_occurred = True
 
     # mutually exclusive - 4 (only if #mutually exclusive - 1, #mutually exclusive - 2, and #mutually exclusive - 3 did not happen)
     if not event_occurred:
         location_revisit = f"Filled with trepidation, {protagonist.first_name} retraces their steps to the location of their initial encounter with the {story_world.monster_name}. The chilling atmosphere is palpable, but the monster is nowhere to be seen. During their visit, {protagonist.first_name} inadvertently uncovers a crucial element that could help defeat the {story_world.monster_name}, and then returns home with newfound determination."
         story_progress.append(location_revisit)
+        event_occurred = True
 
     monster_origin = story_world.events[0][0]
     origin_description = {
