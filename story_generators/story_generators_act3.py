@@ -100,7 +100,15 @@ def generate_breakthrough(protagonist, story_world):
     protagonist.knowledge.append(('monster_origin', monster_origin, origin_reason))
 
     if event_occurred:
-        origin_discovery = f"{protagonist.first_name} learns that the {story_world.monster_name} is the result of {origin_reason.value}."
+        origin_discovery_variations = [
+            f"In addition, {protagonist.first_name} discovers that the {story_world.monster_name} came into existence as a result of {origin_reason.value}.",
+            f"They further find out that the origin of the {story_world.monster_name} is tied to {origin_reason.value}.",
+            f"On top of this, {protagonist.first_name} uncovers that the {story_world.monster_name} is a consequence of {origin_reason.value}.",
+            f"Moreover, it becomes clear to {protagonist.first_name} that the {story_world.monster_name} was born from {origin_reason.value}.",
+            f"Additionally, {protagonist.first_name} unravels that the genesis of the {story_world.monster_name} is linked to {origin_reason.value}.",
+            f"They also ascertain that the {story_world.monster_name}'s existence is due to {origin_reason.value}."
+        ]
+        origin_discovery = random.choice(origin_discovery_variations)
         story_progress.append(origin_discovery)
 
     breakthrough_story = ' '.join(story_progress)
