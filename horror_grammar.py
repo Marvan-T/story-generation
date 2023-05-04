@@ -4,7 +4,7 @@ from story_generators.story_generators_act1 import generate_stage1_variations, g
     generate_meeting_other_characters, generate_isolation, generate_first_encounter
 from story_generators.story_generators_act2 import generate_danger_obvious, generate_pursuit, \
     generate_first_confrontation, generate_desperation
-from story_generators.story_generators_act3 import generate_breakthrough, generate_preparation
+from story_generators.story_generators_act3 import generate_breakthrough, generate_preparation, price_of_victory
 
 
 def get_horror_grammar(story_world):
@@ -29,6 +29,8 @@ def get_horror_grammar(story_world):
 
     breakthrough = generate_breakthrough(protagonist, story_world)
     preparation = generate_preparation(protagonist, story_world)
+
+    outcome = price_of_victory(protagonist, story_world)
 
     horror_rules = {
         "origin": ["#act1#\n\n#act2#\n\n#act3#"],
@@ -95,7 +97,7 @@ def get_horror_grammar(story_world):
         "desperation": desperation,
         "breakthrough": breakthrough,
         "preparation": preparation,
-        "priceOfVictory": ["..."],
+        "priceOfVictory": outcome,
         "fallout": ["..."]
     }
 

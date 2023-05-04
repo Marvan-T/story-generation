@@ -4,6 +4,7 @@ from domain.character import Character
 from domain.character_involvement import CharacterInvolvement
 from domain.origin_descriptions import IgnoredBurial, AncientCurse, UnethicalExperiment, SupernaturalPortal, \
     ForbiddenRitual
+from domain.preperation_progress import PreparationProgress
 
 
 def generate_breakthrough(protagonist, story_world):
@@ -137,7 +138,7 @@ def generate_preparation(protagonist, story_world):
         elif monster_origin_variation == IgnoredBurial.UNBURIED_BODY:
             story_progress.append(f"{protagonist.first_name} searches high and low for the unburied remains. "
                                   "Their efforts pay off when they finally uncover the remains hidden deep within the forest.")
-        protagonist.preparation_progress.append('Found and prepared the remains for burial.')
+        protagonist.preparation_progress.append(PreparationProgress.FOUND_AND_PREPARED)
 
     elif monster_origin_type == 'ancient_curse':
         if monster_origin_variation == AncientCurse.CURSED_OBJECT:
@@ -151,7 +152,8 @@ def generate_preparation(protagonist, story_world):
             story_progress.append(
                 f"{protagonist.first_name} sets out on a quest to return the ancient artifact to its original location. "
                 "After overcoming numerous obstacles, they finally place the artifact back where it belongs.")
-        protagonist.preparation_progress.append('Found and destroyed the cursed object.')
+        protagonist.preparation_progress.append(PreparationProgress.FOUND_AND_DESTROYED)
+
 
     elif monster_origin_type == 'unethical_experiment':
         if monster_origin_variation == UnethicalExperiment.GONE_AWRY:
@@ -165,7 +167,7 @@ def generate_preparation(protagonist, story_world):
             story_progress.append(
                 f"{protagonist.first_name} immerses themselves in their study, seeking a cure for the pathogen. "
                 "After countless hours of work, they finally formulate a potential cure.")
-        protagonist.preparation_progress.append('Found the scientist\'s notes and developed an antidote.')
+        protagonist.preparation_progress.append(PreparationProgress.DEVELOPED_ANTIDOTE)
 
     elif monster_origin_type == 'supernatural_portal':
         if monster_origin_variation == SupernaturalPortal.ACCIDENTAL_OPENING:
@@ -180,7 +182,8 @@ def generate_preparation(protagonist, story_world):
             story_progress.append(
                 f"{protagonist.first_name} ventures into unknown territories in search of the artifact that opened the gateway. "
                 "Their journey leads them to a remote cave where they find the artifact, enveloped in an eerie glow.")
-        protagonist.preparation_progress.append('Performed the sealing ritual and closed the portal.')
+        protagonist.preparation_progress.append(PreparationProgress.CLOSED_PORTAL)
+
 
     elif monster_origin_type == 'forbidden_ritual':
             if monster_origin_variation == ForbiddenRitual.DARK_FORCES:
@@ -195,8 +198,40 @@ def generate_preparation(protagonist, story_world):
                 story_progress.append(
                     f"{protagonist.first_name} cleanses the area affected by the sinister energies and starts preparing for a protective rite. "
                     "After days of meticulous preparation, the area starts to feel less oppressive, signalling the start of a protective barrier.")
-            protagonist.preparation_progress.append('Banished the dark forces using the counter-ritual.')
+            protagonist.preparation_progress.append(PreparationProgress.BANISHED_FORCES)
 
     story_progress.append(
         f"Filled with determination, {protagonist.first_name} is now ready to confront the {story_world.monster_name}.")
     return ' '.join(story_progress)
+
+def price_of_victory(protagonist, story_world):
+    preparation = protagonist.preparation_progress[-1]  # Get the most recent preparation progress
+    success_rate = random.random()  # Generate a random number between 0 and 1 for success/failure
+
+    if preparation == PreparationProgress.FOUND_AND_PREPARED:
+        if success_rate < 0.8:  # 80% success chance
+            outcome = f"{protagonist.first_name} successfully locates the forgotten grave and performs the necessary rites. The restless ghost haunting the {story_world.monster_name} is finally put to rest, and the creature disappears."
+        else:
+            outcome = f"{protagonist.first_name} attempts to perform the burial rites, but something goes wrong. The {story_world.monster_name} remains, and the protagonist must continue their search for a solution."
+    elif preparation == PreparationProgress.FOUND_AND_DESTROYED:
+        if success_rate < 0.8:
+            outcome = f"{protagonist.first_name} destroys the cursed object, breaking the ancient curse on the {story_world.monster_name}. The creature is no longer a threat to the world."
+        else:
+            outcome = f"{protagonist.first_name} tries to destroy the cursed object, but the curse proves too powerful. The {story_world.monster_name} continues its reign of terror."
+    elif preparation == PreparationProgress.DEVELOPED_ANTIDOTE:
+        if success_rate < 0.8:
+            outcome = f"{protagonist.first_name} administers the antidote, reversing the horrifying transformation of the {story_world.monster_name}. The creature returns to its original form, and the nightmare is finally over."
+        else:
+            outcome = f"{protagonist.first_name} attempts to use the antidote, but it fails to have the desired effect. The {story_world.monster_name} remains a danger, and the protagonist must keep searching for answers."
+    elif preparation == PreparationProgress.CLOSED_PORTAL:
+        if success_rate < 0.8:
+            outcome = f"{protagonist.first_name} successfully completes the sealing ritual, closing the supernatural portal. The {story_world.monster_name} is banished back to its own realm, and peace is restored."
+        else:
+            outcome = f"{protagonist.first_name} struggles to perform the sealing ritual correctly. The portal remains open, and the {story_world.monster_name} continues to wreak havoc."
+    elif preparation == PreparationProgress.BANISHED_FORCES:
+        if success_rate < 0.8:
+            outcome = f"{protagonist.first_name} performs the counter-ritual, banishing the dark forces controlling the {story_world.monster_name}. The creature is no more, and the darkness has been vanquished."
+        else:
+            outcome = f"{protagonist.first_name} tries to perform the counter-ritual, but something goes awry. The dark forces remain, and the {story_world.monster_name} continues to terrorize the land."
+
+    return outcome
