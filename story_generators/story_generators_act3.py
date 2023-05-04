@@ -209,27 +209,27 @@ def price_of_victory(protagonist, story_world):
     success_rate = random.random()  # Generate a random number between 0 and 1 for success/failure
 
     if preparation == PreparationProgress.FOUND_AND_PREPARED:
-        if success_rate < 0.8:  # 80% success chance
+        if success_rate < 0.5:  # 80% success chance
             outcome = f"{protagonist.first_name} successfully locates the forgotten grave and performs the necessary rites. The restless ghost haunting the {story_world.monster_name} is finally put to rest, and the creature disappears."
         else:
             outcome = f"{protagonist.first_name} attempts to perform the burial rites, but something goes wrong. The {story_world.monster_name} remains, and the protagonist must continue their search for a solution."
     elif preparation == PreparationProgress.FOUND_AND_DESTROYED:
-        if success_rate < 0.8:
+        if success_rate < 0.5:
             outcome = f"{protagonist.first_name} destroys the cursed object, breaking the ancient curse on the {story_world.monster_name}. The creature is no longer a threat to the world."
         else:
             outcome = f"{protagonist.first_name} tries to destroy the cursed object, but the curse proves too powerful. The {story_world.monster_name} continues its reign of terror."
     elif preparation == PreparationProgress.DEVELOPED_ANTIDOTE:
-        if success_rate < 0.8:
+        if success_rate < 0.5:
             outcome = f"{protagonist.first_name} administers the antidote, reversing the horrifying transformation of the {story_world.monster_name}. The creature returns to its original form, and the nightmare is finally over."
         else:
             outcome = f"{protagonist.first_name} attempts to use the antidote, but it fails to have the desired effect. The {story_world.monster_name} remains a danger, and the protagonist must keep searching for answers."
     elif preparation == PreparationProgress.CLOSED_PORTAL:
-        if success_rate < 0.8:
+        if success_rate < 0.5:
             outcome = f"{protagonist.first_name} successfully completes the sealing ritual, closing the supernatural portal. The {story_world.monster_name} is banished back to its own realm, and peace is restored."
         else:
             outcome = f"{protagonist.first_name} struggles to perform the sealing ritual correctly. The portal remains open, and the {story_world.monster_name} continues to wreak havoc."
     elif preparation == PreparationProgress.BANISHED_FORCES:
-        if success_rate < 0.8:
+        if success_rate < 0.5:
             outcome = f"{protagonist.first_name} performs the counter-ritual, banishing the dark forces controlling the {story_world.monster_name}. The creature is no more, and the darkness has been vanquished."
         else:
             outcome = f"{protagonist.first_name} tries to perform the counter-ritual, but something goes awry. The dark forces remain, and the {story_world.monster_name} continues to terrorize the land."

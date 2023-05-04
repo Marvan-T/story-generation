@@ -70,7 +70,7 @@ def get_horror_grammar(story_world):
         ],
 
         "act3": [
-            "#stage9#\n#stage10#\n#stage11#\n#stage12#"
+            "#stage9#\n#stage10#\n#stage11#"
         ],
         "stage9": [
             "Breakthrough: #breakthrough#."
@@ -80,9 +80,6 @@ def get_horror_grammar(story_world):
         ],
         "stage11": [
             "The price of victory: #priceOfVictory#."
-        ],
-        "stage12": [
-            "The fallout: #fallout#."
         ],
 
         "monsterHint": stage1_variations,
@@ -97,8 +94,7 @@ def get_horror_grammar(story_world):
         "desperation": desperation,
         "breakthrough": breakthrough,
         "preparation": preparation,
-        "priceOfVictory": outcome,
-        "fallout": ["..."]
+        "priceOfVictory": outcome
     }
 
     horror_grammar = tracery.Grammar(horror_rules)
