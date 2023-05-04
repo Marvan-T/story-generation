@@ -11,6 +11,7 @@ class Character:
         self.knowledge = []
         self.monster_escape = None
         self.status = "normal"
+        self.preparation_progress = []
 
     def __str__(self):
         return f"{self.name} ({self.role})"

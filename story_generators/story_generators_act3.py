@@ -118,8 +118,13 @@ def generate_breakthrough(protagonist, story_world):
 
 def generate_preparation(protagonist, story_world):
     story_progress = []
-    monster_origin_tuple = [item for item in protagonist.knowledge if item[0] == 'monster_origin'][0]
-    monster_origin_type, monster_origin_variation = monster_origin_tuple[1], monster_origin_tuple[2]
+    monster_origin_type, monster_origin_variation = None, None
+
+    for knowledge in protagonist.knowledge:
+        if knowledge[0] == 'monster_origin':
+            monster_origin_type = knowledge[1]
+            monster_origin_variation = knowledge[2]
+            break
 
     if monster_origin_type == 'ignored_burial':
         if monster_origin_variation == IgnoredBurial.IMPROPERLY_LAIRED:
@@ -132,6 +137,7 @@ def generate_preparation(protagonist, story_world):
         elif monster_origin_variation == IgnoredBurial.UNBURIED_BODY:
             story_progress.append(f"{protagonist.first_name} searches high and low for the unburied remains. "
                                   "Their efforts pay off when they finally uncover the remains hidden deep within the forest.")
+        protagonist.preparation_progress.append('Found and prepared the remains for burial.')
 
     elif monster_origin_type == 'ancient_curse':
         if monster_origin_variation == AncientCurse.CURSED_OBJECT:
@@ -145,6 +151,7 @@ def generate_preparation(protagonist, story_world):
             story_progress.append(
                 f"{protagonist.first_name} sets out on a quest to return the ancient artifact to its original location. "
                 "After overcoming numerous obstacles, they finally place the artifact back where it belongs.")
+        protagonist.preparation_progress.append('Found and destroyed the cursed object.')
 
     elif monster_origin_type == 'unethical_experiment':
         if monster_origin_variation == UnethicalExperiment.GONE_AWRY:
@@ -158,6 +165,7 @@ def generate_preparation(protagonist, story_world):
             story_progress.append(
                 f"{protagonist.first_name} immerses themselves in their study, seeking a cure for the pathogen. "
                 "After countless hours of work, they finally formulate a potential cure.")
+        protagonist.preparation_progress.append('Found the scientist\'s notes and developed an antidote.')
 
     elif monster_origin_type == 'supernatural_portal':
         if monster_origin_variation == SupernaturalPortal.ACCIDENTAL_OPENING:
@@ -172,8 +180,9 @@ def generate_preparation(protagonist, story_world):
             story_progress.append(
                 f"{protagonist.first_name} ventures into unknown territories in search of the artifact that opened the gateway. "
                 "Their journey leads them to a remote cave where they find the artifact, enveloped in an eerie glow.")
+        protagonist.preparation_progress.append('Performed the sealing ritual and closed the portal.')
 
-        elif monster_origin_type == 'forbidden_ritual':
+    elif monster_origin_type == 'forbidden_ritual':
             if monster_origin_variation == ForbiddenRitual.DARK_FORCES:
                 story_progress.append(
                     f"{protagonist.first_name} spends countless hours in ancient libraries, researching a counter-ritual to banish the dark forces. "
@@ -186,6 +195,7 @@ def generate_preparation(protagonist, story_world):
                 story_progress.append(
                     f"{protagonist.first_name} cleanses the area affected by the sinister energies and starts preparing for a protective rite. "
                     "After days of meticulous preparation, the area starts to feel less oppressive, signalling the start of a protective barrier.")
+            protagonist.preparation_progress.append('Banished the dark forces using the counter-ritual.')
 
     story_progress.append(
         f"Filled with determination, {protagonist.first_name} is now ready to confront the {story_world.monster_name}.")
