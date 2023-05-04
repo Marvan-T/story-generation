@@ -2,6 +2,8 @@ import random
 
 from domain.character import Character
 from domain.character_involvement import CharacterInvolvement
+from domain.origin_descriptions import IgnoredBurial, AncientCurse, UnethicalExperiment, SupernaturalPortal, \
+    ForbiddenRitual
 
 
 def generate_breakthrough(protagonist, story_world):
@@ -87,40 +89,96 @@ def generate_breakthrough(protagonist, story_world):
 
     monster_origin = story_world.events[0][0]
     origin_description = {
-        'ignored_burial': [
-            "an improperly laid to rest spirit, which could be appeased by performing a proper burial ritual",
-            "a restless ghost due to a forgotten grave, which can be pacified by cleaning and marking the grave",
-            "an angry spirit of an unburied body, which can be calmed by finding and burying the remains"
-        ],
-        'ancient_curse': [
-            "a powerful ancient curse, which can be broken by finding and destroying the cursed object",
-            "a deadly curse unleashed by a forbidden act, which can be lifted by making amends for the act",
-            "a malediction linked to an ancient artifact, which can be nullified by returning the artifact to its original location"
-        ],
-        'unethical_experiment': [
-            "an unethical experiment gone awry, which may be reversed by finding the scientist's notes and developing an antidote",
-            "a failed experiment resulting in monstrous creatures, which can be neutralized by destroying the source of their mutation",
-            "a dangerous experiment that released a pathogen, which can be contained by discovering a cure and administering it to the affected population"
-        ],
-        'supernatural_portal': [
-            "a supernatural portal accidentally opened, which can be closed by performing a sealing ritual",
-            "a dimensional rift connecting to another realm, which can be sealed by repairing the damaged energy ley lines",
-            "an otherworldly gateway inadvertently activated, which can be shut down by finding and deactivating the artifact that opened it"
-        ],
-        'forbidden_ritual': [
-            "a forbidden ritual that unleashed dark forces, which can be stopped by banishing the dark forces using a counter-ritual",
-            "a dark summoning that brought forth a malevolent being, which can be banished by completing a sacred ritual",
-            "an occult ceremony that invoked sinister energies, which can be dispelled by cleansing the area and performing a protective rite"
-        ]
+        'ignored_burial': IgnoredBurial,
+        'ancient_curse': AncientCurse,
+        'unethical_experiment': UnethicalExperiment,
+        'supernatural_portal': SupernaturalPortal,
+        'forbidden_ritual': ForbiddenRitual
     }
 
-    origin_reason = random.choice(origin_description[monster_origin])
-    protagonist.knowledge.append(('monster_origin', monster_origin, random.choice(origin_description[monster_origin])))
+    origin_reason = random.choice(list(origin_description[monster_origin]))
+    protagonist.knowledge.append(('monster_origin', monster_origin, origin_reason))
 
     if event_occurred:
-        origin_discovery = f"{protagonist.first_name} learns that the {story_world.monster_name} is the result of {origin_reason}."
+        origin_discovery = f"{protagonist.first_name} learns that the {story_world.monster_name} is the result of {origin_reason.value}."
         story_progress.append(origin_discovery)
 
     breakthrough_story = ' '.join(story_progress)
     protagonist.breakthrough_actions = story_progress
     return breakthrough_story
+
+
+def generate_preparation(protagonist, story_world):
+    story_progress = []
+    monster_origin_tuple = [item for item in protagonist.knowledge if item[0] == 'monster_origin'][0]
+    monster_origin_type, monster_origin_variation = monster_origin_tuple[1], monster_origin_tuple[2]
+
+    if monster_origin_type == 'ignored_burial':
+        if monster_origin_variation == IgnoredBurial.IMPROPERLY_LAIRED:
+            story_progress.append(
+                f"{protagonist.first_name} spends days gathering the necessary materials for a proper burial ritual. "
+                "After a long search, they find what they need and prepare for the ritual.")
+        elif monster_origin_variation == IgnoredBurial.FORGOTTEN_GRAVE:
+            story_progress.append(f"{protagonist.first_name} journeys to the location of the forgotten grave. "
+                                  "After hours of cleaning and marking, the grave now stands out as a testament to the lost soul.")
+        elif monster_origin_variation == IgnoredBurial.UNBURIED_BODY:
+            story_progress.append(f"{protagonist.first_name} searches high and low for the unburied remains. "
+                                  "Their efforts pay off when they finally uncover the remains hidden deep within the forest.")
+
+    elif monster_origin_type == 'ancient_curse':
+        if monster_origin_variation == AncientCurse.CURSED_OBJECT:
+            story_progress.append(f"{protagonist.first_name} dedicates their time to finding the cursed object. "
+                                  "After a perilous journey, they find the object hidden in the depths of an ancient ruin.")
+        elif monster_origin_variation == AncientCurse.FORBIDDEN_ACT:
+            story_progress.append(
+                f"{protagonist.first_name} embarks on a mission to make amends for the forbidden act. "
+                "They manage to perform a deed of great kindness, hoping it will lift the curse.")
+        elif monster_origin_variation == AncientCurse.ANCIENT_ARTIFACT:
+            story_progress.append(
+                f"{protagonist.first_name} sets out on a quest to return the ancient artifact to its original location. "
+                "After overcoming numerous obstacles, they finally place the artifact back where it belongs.")
+
+    elif monster_origin_type == 'unethical_experiment':
+        if monster_origin_variation == UnethicalExperiment.GONE_AWRY:
+            story_progress.append(
+                f"{protagonist.first_name} exhaustively searches for the scientist's notes to develop an antidote. "
+                "After days of research, they concoct the antidote in a makeshift lab.")
+        elif monster_origin_variation == UnethicalExperiment.MONSTROUS_CREATURES:
+            story_progress.append(f"{protagonist.first_name} plans an attack to destroy the source of the mutation. "
+                                  "With careful preparation, they manage to infiltrate the location and destroy the mutation source.")
+        elif monster_origin_variation == UnethicalExperiment.RELEASED_PATHOGEN:
+            story_progress.append(
+                f"{protagonist.first_name} immerses themselves in their study, seeking a cure for the pathogen. "
+                "After countless hours of work, they finally formulate a potential cure.")
+
+    elif monster_origin_type == 'supernatural_portal':
+        if monster_origin_variation == SupernaturalPortal.ACCIDENTAL_OPENING:
+            story_progress.append(
+                f"{protagonist.first_name} devotes themselves to learning the sealing ritual to close the supernatural portal. "
+                "After several failed attempts, they finally succeed in performing the ritual flawlessly.")
+        elif monster_origin_variation == SupernaturalPortal.DIMENSIONAL_RIFT:
+            story_progress.append(
+                f"{protagonist.first_name} seeks out ancient texts and knowledgeable elders to learn about repairing damaged energy ley lines. "
+                "After a long journey filled with cryptic puzzles and wise teachings, they finally understand how to mend the rift.")
+        elif monster_origin_variation == SupernaturalPortal.OTHERWORLDLY_GATEWAY:
+            story_progress.append(
+                f"{protagonist.first_name} ventures into unknown territories in search of the artifact that opened the gateway. "
+                "Their journey leads them to a remote cave where they find the artifact, enveloped in an eerie glow.")
+
+        elif monster_origin_type == 'forbidden_ritual':
+            if monster_origin_variation == ForbiddenRitual.DARK_FORCES:
+                story_progress.append(
+                    f"{protagonist.first_name} spends countless hours in ancient libraries, researching a counter-ritual to banish the dark forces. "
+                    "After many sleepless nights, they finally uncover a counter-ritual that could potentially reverse the situation.")
+            elif monster_origin_variation == ForbiddenRitual.MALEVOLENT_BEING:
+                story_progress.append(
+                    f"{protagonist.first_name} braves dangerous locations to gather materials needed for a sacred ritual to banish the malevolent being. "
+                    "Their courage pays off when they manage to obtain the last material during a risky encounter.")
+            elif monster_origin_variation == ForbiddenRitual.SINISTER_ENERGIES:
+                story_progress.append(
+                    f"{protagonist.first_name} cleanses the area affected by the sinister energies and starts preparing for a protective rite. "
+                    "After days of meticulous preparation, the area starts to feel less oppressive, signalling the start of a protective barrier.")
+
+    story_progress.append(
+        f"Filled with determination, {protagonist.first_name} is now ready to confront the {story_world.monster_name}.")
+    return ' '.join(story_progress)
