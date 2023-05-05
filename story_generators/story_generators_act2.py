@@ -12,7 +12,7 @@ def generate_danger_obvious(protagonist, story_world):
     return random.choice(danger_scenarios)
 
 def generate_pursuit(protagonist, story_world):
-    hint_chance = 0.5  # Probability of providing a hint
+    hint_chance = 0.4  # Probability of discovering a hint during the pursuit
 
     hints = {
         "ignored_burial": "an unmarked grave",

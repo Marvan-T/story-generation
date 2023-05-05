@@ -15,7 +15,7 @@ def generate_breakthrough(protagonist, story_world):
 
     event_occurred = False
 
-    # mutually exclusive - 1
+    # If the protagonist heard something from other characters about the monster
     if protagonist.knowledge:
         met_characters = [item for item in protagonist.knowledge if isinstance(item[0], Character)]
 
@@ -66,7 +66,7 @@ def generate_breakthrough(protagonist, story_world):
                 story_progress.extend(research_story)
                 event_occurred = True
 
-    # mutually exclusive - 2 (only if #mutually exclusive - 1 did not happen)
+    # If the protagonist found a clue about the monster during the pursuit
     if not event_occurred and any('hint' in attribute for attribute in protagonist.knowledge):
         clue = [item for item in protagonist.knowledge if item[0] == "hint"]
         if clue:
@@ -75,14 +75,14 @@ def generate_breakthrough(protagonist, story_world):
             story_progress.append(investigation)
         event_occurred = True
 
-    # mutually exclusive - 3 (only if #mutually exclusive - 1 and #mutually exclusive - 2 did not happen)
+    # Random chance to meet an ally who will help
     if not event_occurred and random.random() < 0.5:
         ally = random.choice(["a skilled investigator", "a knowledgeable historian", "an experienced monster hunter"])
         ally_interaction = f"While feeling overwhelmed and desperate, {protagonist.first_name} encounters {ally}, who offers to help them in their quest for the truth. With their unique skills and resources, they provide fresh insights into the {story_world.monster_name}'s origins."
         story_progress.append(ally_interaction)
         event_occurred = True
 
-    # mutually exclusive - 4 (only if #mutually exclusive - 1, #mutually exclusive - 2, and #mutually exclusive - 3 did not happen)
+    # If none of the above events occurred, the protagonist returns to the location of their initial encounter with the monster to search for clues
     if not event_occurred:
         location_revisit = f"Filled with trepidation, {protagonist.first_name} retraces their steps to the location of their initial encounter with the {story_world.monster_name}. The chilling atmosphere is palpable, but the monster is nowhere to be seen. During their visit, {protagonist.first_name} inadvertently uncovers a crucial element that could help defeat the {story_world.monster_name}, and then returns home with newfound determination."
         story_progress.append(location_revisit)
@@ -205,8 +205,8 @@ def generate_preparation(protagonist, story_world):
     return ' '.join(story_progress)
 
 def price_of_victory(protagonist, story_world):
-    preparation = protagonist.preparation_progress[-1]  # Get the most recent preparation progress
-    success_rate = random.random()  # Generate a random number between 0 and 1 for success/failure
+    preparation = protagonist.preparation_progress[-1]
+    success_rate = random.random()  # Probability of success in defeating the monster despite the preparation
 
     if preparation == PreparationProgress.FOUND_AND_PREPARED:
         if success_rate < 0.5:  # 80% success chance

@@ -138,7 +138,7 @@ def generate_starting_journey(location, modifier, first_name):
 
 
 def generate_meeting_other_characters(protagonist, other_characters, story_world):
-    character1, character2 = random.sample(other_characters, 2)  # Todo: make sure this doesn't include the protagonist
+    character1, character2 = random.sample(other_characters, 2)
 
     normal_conversations = [
         f"{character1.first_name} and {character2.first_name} talk about the upcoming town festival.",
