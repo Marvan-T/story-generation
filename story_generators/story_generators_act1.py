@@ -100,6 +100,9 @@ def generate_character_intro(story_world, num_sentences=5):
 def generate_starting_journey(location, modifier, first_name):
     sentences = []
 
+    if not modifier:
+        return ""
+
     journey_options = {
         CharacterModifiers.NEWCOMER: [
             f"Having recently moved to {location}, {first_name} gets to know the area and meets some locals.",

@@ -209,7 +209,7 @@ def price_of_victory(protagonist, story_world):
     success_rate = random.random()  # Probability of success in defeating the monster despite the preparation
 
     if preparation == PreparationProgress.FOUND_AND_PREPARED:
-        if success_rate < 0.5:  # 80% success chance
+        if success_rate < 0.5:
             outcome = f"{protagonist.first_name} successfully locates the forgotten grave and performs the necessary rites. The restless ghost haunting the {story_world.monster_name} is finally put to rest, and the creature disappears."
         else:
             outcome = f"{protagonist.first_name} attempts to perform the burial rites, but something goes wrong. The {story_world.monster_name} remains, and the protagonist must continue their search for a solution."
