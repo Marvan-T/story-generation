@@ -17,6 +17,7 @@ def get_horror_grammar(story_world):
     leeway_to_break = 0.7  # 70% chance of executing the functions
     guaranteed_probability = 1.0  # 100% chance of executing the functions
 
+    # act1 stages
     stage1_variations = execute_with_probability(leeway_to_break, generate_stage1_variations, monster, horror_location)
     character_intros = execute_with_probability(leeway_to_break, generate_character_intro, story_world)
     starting_journeys = execute_with_probability(leeway_to_break, generate_starting_journey, story_world.town_name,
@@ -29,13 +30,14 @@ def get_horror_grammar(story_world):
     isolation_sentences = execute_with_probability(leeway_to_break, generate_isolation, protagonist, story_world)
     first_encounter_scenarios = execute_with_probability(leeway_to_break, generate_first_encounter, protagonist,
                                                          story_world)
-
+    # act2 stages
     danger_obvious = execute_with_probability(leeway_to_break, generate_danger_obvious, protagonist, story_world)
     pursuit_sentences = execute_with_probability(leeway_to_break, generate_pursuit, protagonist, story_world)
     first_confrontation = execute_with_probability(leeway_to_break, generate_first_confrontation, protagonist,
                                                    story_world)
     desperation = execute_with_probability(leeway_to_break, generate_desperation, protagonist, story_world)
 
+    # act3 stages
     breakthrough = execute_with_probability(guaranteed_probability, generate_breakthrough, protagonist, story_world)
     preparation = execute_with_probability(guaranteed_probability, generate_preparation, protagonist, story_world)
 
