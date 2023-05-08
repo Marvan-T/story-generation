@@ -1,3 +1,4 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 from story_simulators import simulate_horror_origin
 from util.locations import get_horror_location
 from util.monster_names import get_random_monster_name
@@ -5,7 +6,6 @@ from domain.character import Character
 from domain.character_involvement import CharacterInvolvement
 from util.town_names import get_town
 import names
-
 
 class StoryWorld:
     def __init__(self):

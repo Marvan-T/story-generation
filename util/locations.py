@@ -1,3 +1,4 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 import random
 
 horror_locations = ["house", "apartment", "cabin", "hotel", "motel", "camp", "park", "wilderness", "town", "island",

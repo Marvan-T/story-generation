@@ -1,3 +1,4 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 import random
 
 towns = ["Transylvania", "Salem", "Whitby", "Derry", "Bran", "Sleepy Hollow", "Castle Dracula", "Arkham", "Innsmouth",

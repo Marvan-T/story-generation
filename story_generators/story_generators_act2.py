@@ -1,4 +1,6 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 import random
+
 
 def generate_danger_obvious(protagonist, story_world):
     danger_scenarios = [

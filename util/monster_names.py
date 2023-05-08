@@ -1,3 +1,4 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 import random
 
 names = ["Mike The Magician", "Alaxesis", "Prancer", "The Adrenaline Junkie", "Big Bad Bully", "Gallow Garry",

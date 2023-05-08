@@ -1,5 +1,5 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 from enum import Enum
-
 
 class IgnoredBurial(Enum):
     IMPROPERLY_LAIRED = "an improperly laid to rest spirit, which could be appeased by performing a proper burial ritual"

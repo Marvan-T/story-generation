@@ -1,7 +1,7 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 import random
 
 from domain.character_modifiers import CharacterModifiers
-
 
 def generate_stage1_variations(monster, location):
     sentences = []

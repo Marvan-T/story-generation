@@ -1,5 +1,5 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 from enum import Enum
-
 
 class CharacterModifiers(Enum):
     NEWCOMER = "a newcomer to the area,"

@@ -1,5 +1,5 @@
+# Marvan Tennekoon (mt588), COMP6590 - Practical Project
 import names
-
 
 class Character:
     def __init__(self, role, involvement=None, name=None):
