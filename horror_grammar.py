@@ -48,47 +48,47 @@ def get_horror_grammar(story_world):
             "#stage1#\n#stage2#\n#stage3#\n#stage4#"
         ],
         "stage1": [
-            "The hidden monster: #monsterHint#.",
+            "The hidden monster: #monsterHint#",
         ],
         "stage2": [
             "Introducing the protagonist: #characterIntro# "
             "#startingJourney# "
-            "#meetingOtherCharacters#.",
+            "#meetingOtherCharacters#",
         ],
         "stage3": [
-            "The journey begins: #isolation#."
+            "The journey begins: #isolation#"
         ],
         "stage4": [
-            "Meeting the monster: #firstEncounter#."
+            "Meeting the monster: #firstEncounter#"
         ],
 
         "act2": [
             "#stage5#\n#stage6#\n#stage7#\n#stage8#"
         ],
         "stage5": [
-            "The turning point: #dangerObvious#."
+            "The turning point: #dangerObvious#"
         ],
         "stage6": [
-            "Pursuit: #pursuit#."
+            "Pursuit: #pursuit#"
         ],
         "stage7": [
-            "The first confrontation: #firstConfrontation#."
+            "The first confrontation: #firstConfrontation#"
         ],
         "stage8": [
-            "Desperation: #desperation#."
+            "Desperation: #desperation#"
         ],
 
         "act3": [
             "#stage9#\n#stage10#\n#stage11#"
         ],
         "stage9": [
-            "Breakthrough: #breakthrough#."
+            "Breakthrough: #breakthrough#"
         ],
         "stage10": [
-            "Preparing for the final confrontation: #preparation#."
+            "Preparing for the final confrontation: #preparation#"
         ],
         "stage11": [
-            "The price of victory: #priceOfVictory#."
+            "The price of victory: #priceOfVictory#"
         ],
 
         "monsterHint": stage1_variations,
