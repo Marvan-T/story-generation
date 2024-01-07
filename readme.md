@@ -1,6 +1,6 @@
 # Story Generation Project
 
-This project is a practical application developed as part of a university module. The goal of the project was to create a system that uses artificial intelligence to produce work that might seem creative to someone observing it. In other words, the aim was to "make something that makes something".
+This project is a practical application developed as part of a university module. The goal of the project was to create a system that uses generative technique to produce work that might seem creative to someone observing it. In other words, the aim was to "make something that makes something".
 
 ## Overview
 
