@@ -20,7 +20,28 @@ The project is structured into several parts:
 
 - [`main.py`](command:_github.copilot.openRelativePath?%5B%22main.py%22%5D "main.py"): This is the entry point of the project. It creates a new `StoryWorld` object, generates a story using the functions in [`story_generators`](command:_github.copilot.openRelativePath?%5B%22story_generators%22%5D "story_generators"), and then prints the generated story.
 
+
+
+https://github.com/Marvan-T/story-generation/assets/65969444/d072f264-7d66-4a1f-a861-9004fa56a251
+
+
+
+
+## Examples of differnet output
+![Example Output - 2 (mt588)](https://github.com/Marvan-T/story-generation/assets/65969444/206856d1-1bdd-4eae-89e3-64bc4b48a168)
+
+![Example Output - 1 (mt588)](https://github.com/Marvan-T/story-generation/assets/65969444/2cf0b07f-62b4-418c-be82-bb08ec5e3c83)
+
+
 ## Running the Project
+
+Install the following dependencies before running:
+
+1. Names - to generate character names: [https://github.com/treyhunner/names](https://github.com/treyhunner/names)
+   - Use the command: `pip install names`
+
+2. Tracery for working with grammars: [https://github.com/aparrish/pytracery](https://github.com/aparrish/pytracery)
+   - Use the command: `pip install tracery`
 
 To run the project, simply execute the [`main.py`](command:_github.copilot.openRelativePath?%5B%22main.py%22%5D "main.py") file. This will generate a new story and print it to the console.
 
