@@ -16,7 +16,7 @@ The project is structured into several parts:
 
 - [`horror_grammar.py`](command:_github.copilot.openRelativePath?%5B%22horror_grammar.py%22%5D "horror_grammar.py"): This file uses the [Tracery](https://github.com/aparrish/tracery) library to define the grammar rules used to generate the text of a story.
 
-- [`story_simulators.py`](command:_github.copilot.openRelativePath?%5B%22story_simulators.py%22%5D "story_simulators.py"): This file contains functions used to simulate the events of a story.
+- [`story_simulators.py`](command:_github.copilot.openRelativePath?%5B%22story_simulators.py%22%5D "story_simulators.py"): This file contains a function to simulate some events that initialize the story world.
 
 - [`main.py`](command:_github.copilot.openRelativePath?%5B%22main.py%22%5D "main.py"): This is the entry point of the project. It creates a new `StoryWorld` object, generates a story using the functions in [`story_generators`](command:_github.copilot.openRelativePath?%5B%22story_generators%22%5D "story_generators"), and then prints the generated story.
 
